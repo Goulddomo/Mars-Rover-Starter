@@ -1,4 +1,5 @@
 class Rover {
+   constructor(position,
    // Write code here!
 }
 
