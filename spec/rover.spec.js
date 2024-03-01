@@ -8,30 +8,37 @@ const Command = require('../command.js');
 
 describe("Rover class", function() {
 
-let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-let message = new Message('Test message with two commands', commands);
-let rover = new Rover(98382);    // Passes 98382 as the rover's position.
-// let response = rover.receiveMessage(message);
+// let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+// let message = new Message('Test message with two commands', commands);
+// let rover = new Rover(98382);    // Passes 98382 as the rover's position.
+// // let response = rover.receiveMessage(message);
 
 // console.log(response);
   // 7 tests here!
 
   // test 7
 it("constructor sets position and default values for mode and generatorWatts", function() {
-  let testRover = new Rover(98385);
-    
-  expect(testRover.position).toBe(98385);
-  expect(testRover.mode).toBe('NORMAL');
-  expect(testRover.generatorWatts).toBe(110);
+  let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+  let message = new Message('Test message with two commands', commands);
+  let rover = new Rover(98382);    // Passes 98382 as the rover's position.
+
+
+  expect(rover.position).toBe(98382);
+  expect(rover.mode).toBe('NORMAL');
+  expect(rover.generatorWatts).toBe(110);
 });
 
 
 // test 8
-// it("response returned by receiveMessage contains the name of the message", function() {
-//   let testRoverTwo = new Rover();
+it("response returned by receiveMessage contains the name of the message", function() {
+  let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+  let message = new Message('Test message with two commands', commands);
+  let rover = new Rover(98382);    // Passes 98382 as the rover's position.
+  let response = rover.receiveMessage(message);
+  console.log(response);
     
-//   expect(testRoverTwo.).toBe();
-// });
+  expect(testRoverTwo.receiveMessage.message).toBe('Test message with two commands');
+});
 
 
 // test 9
