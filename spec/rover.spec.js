@@ -37,23 +37,29 @@ it("response returned by receiveMessage contains the name of the message", funct
   let response = rover.receiveMessage(message);
   console.log(response);
     
-  expect(testRoverTwo.receiveMessage.message).toBe('Test message with two commands');
+  expect(response.message).toBe('Test message with two commands');
 });
 
 
 // test 9
-// it("response returned by receiveMessage includes two results if two commands are sent in the message", function() {
-//   let testRoverThree = new Rover();
-    
-//   expect(testRoverThree.).toBe();
-// });
+it("response returned by receiveMessage includes two results if two commands are sent in the message", function() {
+  let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+  let message = new Message('Test message with two commands', commands);
+  let rover = new Rover(98382);    // Passes 98382 as the rover's position.
+  let response = rover.receiveMessage(message)
+
+  expect(response.results.length).toBe(2);
+});
 
 
 // test 10
 // it("responds correctly to the status check command", function() {
-//   let testRoverFour = new Rover();
+//   let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+//   let message = new Message('Test message with two commands', commands);
+//   let rover = new Rover(98382);    // Passes 98382 as the rover's position.
+//   let response = rover.receiveMessage(message)
     
-//   expect(testRoverFour.).toBe();
+//   expect(response.r).toBe("completed: true");
 // });
 
 

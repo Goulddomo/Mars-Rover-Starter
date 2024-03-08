@@ -13,23 +13,31 @@ class Rover {
       this.mode = mode;
       this.generatorWatts = generatorWatts;
    }
-   // return an object
-   // wihtin the object there will be two properties
-   //  iterate through the commands inside the message.commands array
+
    receiveMessage(message) {
+      // TEST 8 - recieve message from Message and push to response.message
+
       const commands = message.commands;
       let response = {
          message: message.name,
          results: []
       };
       for (let i = 0; i < commands.length; i++) {
-      let result = {}
-         if ()
-response.results.push(result)
+         // TEST 9 - return the two commands that are sent in the message
+         response.results.push(commands[i]);
       }
       return response;
-
    }
+      // TEST 10 if command === low power then stop??? 
+   //    for (let j = 0; j < commands.commandType.length; j++) {
+   //       if (commands[j].commandType === 'MOVE') {
+   //       rover.position.push(commands.value)
+   //       return rover.position
+
+   //    }
+   // }
+      
+   
 }
 
 
@@ -38,10 +46,10 @@ response.results.push(result)
 let rover = new Rover(100);
 let commands = [
    new Command('MOVE', 4321),
-   new Command('STATUS_CHECK'),
-   new Command('MODE_CHANGE', 'LOW_POWER'),
+   // new Command('STATUS_CHECK'),
+   // new Command('MODE_CHANGE', 'LOW_POWER'),
    new Command('MOVE', 3579),
-   new Command('STATUS_CHECK')
+   // new Command('STATUS_CHECK')
 ];
 let message = new Message('TA power', commands);
 let response = rover.receiveMessage(message);
