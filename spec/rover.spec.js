@@ -53,30 +53,36 @@ it("response returned by receiveMessage includes two results if two commands are
 
 
 // test 10
-// it("responds correctly to the status check command", function() {
-//   let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-//   let message = new Message('Test message with two commands', commands);
-//   let rover = new Rover(98382);    // Passes 98382 as the rover's position.
-//   let response = rover.receiveMessage(message)
+it("responds correctly to the status check command", function() {
+  let commands = [new Command('STATUS_CHECK')];
+  let message = new Message('Status Check', commands);
+  let rover = new Rover(98382);    // Passes 98382 as the rover's position.
+  let response = rover.receiveMessage(message)
     
-//   expect(response.r).toBe("completed: true");
-// });
+  expect(response.results[0].completed).toBe(true);
+});
 
 
 // test 11
-// it("responds correctly to the mode change command", function() {
-//   let testRoverFive = new Rover();
+it("responds correctly to the mode change command", function() {
+  let commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
+  let message = new Message('MODE CHANGE', commands);
+  let rover = new Rover(98382);    // Passes 98382 as the rover's position.
+  let response = rover.receiveMessage(message)
     
-//   expect(testRoverFive.).toBe();
-// });
+  expect(response.results[0].completed).toBe(true);
+});
 
 
 // test 12
-// it("responds with a false completed value when attempting to move in LOW_POWER mode", function() {
-//   let testRoverSix = new Rover();
+it("responds with a false completed value when attempting to move in LOW_POWER mode", function() {
+  let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('MOVE', 26)];
+  let message = new Message('Test message with two commands', commands);
+  let rover = new Rover(98382);    // Passes 98382 as the rover's position.
+  let response = rover.receiveMessage(message)
     
-//   expect(testRoverSix.).toBe();
-// });
+  expect(response.results[1].completed).toBe(false);
+});
 
 
 
